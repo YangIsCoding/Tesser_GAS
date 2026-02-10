@@ -97,7 +97,7 @@ This validated the end-to-end flow:
 
 ---
 
-## 4) Key Engineering Step: Overcoming the 1024-Block Limit with Chunking
+## 4) Overcoming the 1024-Block Limit with Chunking
 
 I demonstrated that:
 
