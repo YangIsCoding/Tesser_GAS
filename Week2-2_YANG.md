@@ -52,9 +52,6 @@ eth_maxPriorityFeePerGas
 
 [https://www.quicknode.com/docs/ethereum/eth_maxPriorityFeePerGas](https://www.quicknode.com/docs/ethereum/eth_maxPriorityFeePerGas)
 
-EIP-1559 specification:
-[https://eips.ethereum.org/EIPS/eip-1559](https://eips.ethereum.org/EIPS/eip-1559)
-
 ---
 
 ## 2️⃣ Does QuickNode Provide Utilities We Can Leverage?
@@ -87,22 +84,3 @@ However, MEV exposure depends on:
 
 Gas estimation does not eliminate MEV risk.
 
----
-
-## Conclusion
-
-Gas estimation consists of:
-
-1. `eth_estimateGas` (execution simulation)
-2. Fee strategy (Legacy or EIP-1559)
-
-QuickNode provides:
-
-* Core RPC methods
-* Higher-level gas analytics APIs
-
-But it does not automatically solve MEV risk.
-
----
-
-If you want, I can also give you a **30-second meeting-ready speaking script version**.
