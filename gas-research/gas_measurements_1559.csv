@@ -1,0 +1,2 @@
+ts,provider,jobId,mode,status,estimateGas,gasLimit,baseFeePerGasWei,maxPriorityFeePerGasWei,maxFeePerGasWei,sentAtMs,txHash,blockNumber,timeToInclusionMs,gasUsed,effectiveGasPriceWei,actualFeeWei,latencyMs,error
+2026-03-02T21:08:40.250Z,quicknode,job_1772485714518,LOCAL_SIGN,MINED,45427,49969,69431345620,26629318412,109946933156,1772485714676,0xb2cc7c29bcce1c5a3bc6fd198fe2b8e269b3a63dffa535a610a3de4a62910a06,83682844,4324,45047,95027366692,4280697787374524,5724,""

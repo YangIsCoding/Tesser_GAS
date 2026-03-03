@@ -1,0 +1,21 @@
+[
+  {
+    "id": "job_1772500227485",
+    "mode": "LOCAL_SIGN",
+    "provider": "quicknode",
+    "status": "PENDING",
+    "createdAtMs": 1772500227485,
+    "deadlineAtMs": 1772586627485,
+    "signedTx": "0x02f8b28189058506fc23ac00851e44ff8ef482c331943c499c542cef5e3811e1192ce70d8cc03d5c335980b844a9059cbb000000000000000000000000b591b1577a38fe2b8c9add1ab42b10461225206f00000000000000000000000000000000000000000000000000000000000003e8c001a0274b0a3c45c56f3c677fd52a814bac6f1745823dcbef5baada7127486533cd8fa05739318da6faa73abfcf549f723c26711692a40d4b2885fdb6e372136f5ad040",
+    "estimateGas": "45427",
+    "gasLimit": "49969",
+    "baseFeePerGasWeiAtBuild": "83338848204",
+    "maxPriorityFeePerGasWeiAtBuild": "30000000000",
+    "maxFeePerGasWeiAtBuild": "130006617844",
+    "currency": "USDC",
+    "amount": "1000",
+    "from": "0xAE01fcDC75Bc7fEC8a62F5B3Dc3cFfe5Acd2F52b",
+    "to": "0xb591b1577a38FE2b8C9adD1aB42B10461225206F",
+    "contract": "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
+  }
+]

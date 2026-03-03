@@ -10,9 +10,7 @@ import {
 import { polygon } from 'viem/chains'
 
 const PROVIDERS = [
-  { name: 'quicknode', url: process.env.RPC_QUICKNODE },
-  { name: 'alchemy', url: process.env.RPC_ALCHEMY },
-  { name: 'dwellir', url: process.env.RPC_DWELLIR },
+  { name: 'quicknode', url: process.env.RPC_QUICKNODE }
 ].filter((p) => !!p.url)
 
 console.log('PROVIDERS=', PROVIDERS)
@@ -33,9 +31,9 @@ if (!fs.existsSync(OUT)) {
   )
 }
 
-const FROM = getAddress('0x2F1339db75E1Dc0cF133D61538EdE7964647ccf0')
-const TO = getAddress('0xae01fcdc75bc7fec8a62f5b3dc3cffe5acd2f52b')
-const TOKEN_CONTRACT = getAddress('0x2791bca1f2de4661ed88a30c99a7a9449aa84174')
+const FROM = getAddress('0xae01fcdc75bc7fec8a62f5b3dc3cffe5acd2f52b') // my A account
+const TO = getAddress('0xb591b1577a38FE2b8C9adD1aB42B10461225206F') // my b account
+const TOKEN_CONTRACT = getAddress('0x2791bca1f2de4661ed88a30c99a7a9449aa84174') // USDC on polygon
 const AMOUNT = 1_000_000n
 
 function nowIso() {
@@ -67,13 +65,13 @@ async function measureOnce() {
     let priorityFeeP50Wei = ''
     let maxPriorityFeePerGasWei = ''
     let maxFeePerGasWei = ''
-    let expectedFee1559Wei = ''   // ✅ NEW (base + tip) * gas
-    let estimatedFee1559Wei = ''  // existing (maxFee * gas upper bound)
+    let expectedFee1559Wei = ''   
+    let estimatedFee1559Wei = ''  
 
     let err = ''
 
     try {
-      // 1️⃣ legacy + estimateGas
+      // legacy + estimateGas
       const [gp, eg] = await Promise.all([
         client.getGasPrice(),
         client.estimateGas({
@@ -87,12 +85,12 @@ async function measureOnce() {
       estimateGas = eg.toString()
       estimatedFeeWei = (gp * eg).toString()
 
-      // 2️⃣ baseFee from latest block
+      // baseFee from latest block
       const block = await client.getBlock()
       const baseFee = block.baseFeePerGas ?? 0n
       baseFeePerGasWei = baseFee.toString()
 
-      // 3️⃣ feeHistory: get p50 tip
+      // feeHistory: get p50 tip
       const feeHistory = await client.request({
         method: 'eth_feeHistory',
         params: ['0x5', 'latest', [50]],
@@ -106,16 +104,16 @@ async function measureOnce() {
       const priorityP50 = BigInt(latestReward)
       priorityFeeP50Wei = priorityP50.toString()
 
-      // ✅ NEW: expected fee ~= (baseFee + tip) * gas
+      // expected fee ~= (baseFee + tip) * gas
       expectedFee1559Wei = ((baseFee + priorityP50) * eg).toString()
 
-      // simple strategy (upper bound)
+      // upper bound
       const maxPriority = priorityP50
       const maxFee = baseFee * 2n + maxPriority
       maxPriorityFeePerGasWei = maxPriority.toString()
       maxFeePerGasWei = maxFee.toString()
 
-      // existing: conservative upper bound fee
+      // conservative upper bound fee
       estimatedFee1559Wei = (maxFee * eg).toString()
     } catch (e) {
       err =
@@ -138,7 +136,7 @@ async function measureOnce() {
         priorityFeeP50Wei,
         maxPriorityFeePerGasWei,
         maxFeePerGasWei,
-        expectedFee1559Wei,   // ✅ NEW
+        expectedFee1559Wei,   
         estimatedFee1559Wei,
         latencyMs.toString(),
         `"${err.replaceAll('"', '""')}"`,
